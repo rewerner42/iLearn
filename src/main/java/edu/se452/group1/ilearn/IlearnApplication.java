@@ -1,13 +1,13 @@
-package iLe.rn.edu.depaul.cdm.se.iLe.rn;
+package edu.se452.group1.ilearn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class IlearnApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(IlearnApplication.class, args);
 	}
 
 }
