@@ -12,7 +12,12 @@
 
             <nav id="nav">
                     <ul>
-                        <li><a href="main.html">Home</a></li>
+                        <li>
+                            <form th:action="@{/logout}" method="post">
+                                <input type="submit" value="Sign Out"/>
+                            </form>
+                        </li>
+                        <li><a href="home.html">Home</a></li>
                         <li class="current"><a href="forum.html">SE 452</a></li>
                         <li><a href="#">Grades</a></li>
                         <li><a href="#">Submissions</a></li>
