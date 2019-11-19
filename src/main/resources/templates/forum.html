@@ -1,5 +1,12 @@
 <!DOCTYPE HTML>
-
+<html th:lang="${#locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/head :: head">
+</head>
+<BODY>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 <html>
 	<head>
 		<title>iLearn</title>

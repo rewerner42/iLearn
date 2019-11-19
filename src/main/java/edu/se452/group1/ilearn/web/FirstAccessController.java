@@ -8,7 +8,7 @@ public class FirstAccessController {
 
     @GetMapping("/")
     public String login() {
-        return "login";
+        return "home";
     }
 
 }

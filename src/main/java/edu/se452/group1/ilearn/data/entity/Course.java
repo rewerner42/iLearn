@@ -21,13 +21,6 @@ public class Course {
     @Column(length = 150)
     private String description;
 
-    @NotNull
-    @Column(name="COURSE_NUM")
-    private long courseNum;
-
-    @Column(name="SECTION_NUM")
-    private long sectionNum;
-
     @ManyToMany(mappedBy = "studentCourses")
     private Set<Student> studentCourses = new HashSet<>();
 
@@ -43,8 +36,6 @@ public class Course {
     public Course(@NotNull String name, String description, @NotNull long courseNum, long sectionNum, Set<Student> studentCourses, Teacher courseTeacher, Set<Assignment> courseAssignments) {
         this.name = name;
         this.description = description;
-        this.courseNum = courseNum;
-        this.sectionNum = sectionNum;
         this.studentCourses = studentCourses;
         this.courseTeacher = courseTeacher;
         this.courseAssignments = courseAssignments;
@@ -72,22 +63,6 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getCourseNum() {
-        return courseNum;
-    }
-
-    public void setCourseNum(long courseNum) {
-        this.courseNum = courseNum;
-    }
-
-    public long getSectionNum() {
-        return sectionNum;
-    }
-
-    public void setSectionNum(long sectionNum) {
-        this.sectionNum = sectionNum;
     }
 
     public Set<Student> getStudentCourses() {

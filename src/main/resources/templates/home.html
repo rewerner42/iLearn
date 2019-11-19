@@ -1,24 +1,23 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-    <TITLE> iLearn </TITLE>
-    <link rel="stylesheet" href="css/styles.css" />
-
+<html th:lang="${#locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/head :: head">
 </head>
 <BODY>
-<nav id="nav">
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<body id="nav">
     <ul>
         <li>
-            <form th:action="@{/logout}" method="post">
+            <form th:action="/logout" method="post">
                 <input type="submit" value="Sign Out"/>
             </form>
         </li>
         <li class="current"><a href="home.html">Home</a></li>
         <li><a href="forum.html">Forum</a></li>
-        <li><a href="grades.html">Grades</a></li>
-        <li><a href="submission.html">Submissions</a></li>
+        <li><a href="./grades.html">Grades</a></li>
+        <li><a href="/submission.html">Submissions</a></li>
     </ul>
-</nav>
-
 </body>
 </html>

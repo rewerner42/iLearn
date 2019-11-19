@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en" xmlns:form="http://www.w3.org/1999/xhtml">
+<body>
+    <div th:fragment="navbar">
+    <nav class="nav-wrapper teal">
+        <a th:href=" @{~/}" class="brand-logo" style="margin-left: 10px;">iLearn</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a data-toggle="modal" data-target="#loginModal" href="#loginModal" class="nav-link">Sign in</a></li>
+            <li><a data-toggle="modal" data-target="#registrationModal" href="#registrationModal" class="nav-link">Sign up</a></li>
+            <li><a th:href="@{/users}">Users</a></li>
+            <li><a th:href="@{/topic/new}">New topic</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+
+        <div id="loginModal" class="modal fade">
+            <div class="modal-content black-text">
+
+            <h5 class="center">Sign in</h5>
+
+            <form name='login' action="login"method="POST">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="username-signin" type="text"/>
+                        <label for="username-signin">Username<label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password-signin" type="password"/>
+                        <label for="password-signin" class="active">Password</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <button class="btn btn-default left" data-dismiss="modal" aria-label="Close">Close</button>
+                        <input class="btn btn-default right" type="submit" value="Login"/>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        </div>
+
+
+
+        <div id="registrationModal" class="modal fade">
+            <div class="modal-content black-text">
+
+                <h5 class="center">Create account</h5>
+
+                <form:form name='register' th:action='@{/register}' modelAttribute="user" method="POST">
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <form:input path="email" id="email-signup" name="email" type="text"/>
+                            <form:label path="email" for="email-signup">E-mail</form:label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <form:input path="username" id="username-signup" name="username-signup" type="text"/>
+                            <form:label path="username" for="username-signup" class="active">Username</form:label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <form:input path="firstName" id="firstname-signup" name="firstname-signup" type="text"/>
+                            <form:label path="firstName" for="firstname-signup" class="active">First Name</form:label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <form:input path="lastName" id="lastname-signup" name="lastname-signup" type="text"/>
+                            <form:label path="lastName" for="lastname-signup" class="active">Last name</form:label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <form:input path="password" id="password-signup" name="password-signup" type="password"
+                                   class="validate"/>
+                            <form:label path="password" for="password-signup" class="active">Password</form:label>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light right" id="submit-signup-form">
+                            SUBMIT<i class="material-icons right" style="line-height: inherit;"></i>
+                        </button>
+                    </div>
+                </div>
+                </form:form>
+            </div>
+        </div>
+    </nav>
+    </div>
+</body>
+</html>

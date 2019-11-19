@@ -15,11 +15,9 @@ public class User {
     @Column(name="USER_ID")
     private long id;
 
-    @NotEmpty
     @Column(name="FIRST_NAME")
     private String firstName;
 
-    @NotEmpty
     @Column(name="LAST_NAME")
     private String lastName;
 
