@@ -10,7 +10,7 @@ public class Post{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
@@ -43,12 +43,12 @@ public class Post{
         this.lastUpdateDate = new Date();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int idPost) {
-        this.id = idPost;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Topic getTopic() {
@@ -89,71 +89,5 @@ public class Post{
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((content == null) ? 0 : content.hashCode());
-        result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
-        result = prime * result + id;
-        result = prime * result + ((lastUpdateDate == null) ? 0 : lastUpdateDate.hashCode());
-        result = prime * result + ((topic == null) ? 0 : topic.hashCode());
-        result = prime * result + ((user == null) ? 0 : user.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Post other = (Post) obj;
-        if (content == null) {
-            if (other.content != null) {
-                return false;
-            }
-        } else if (!content.equals(other.content)) {
-            return false;
-        }
-        if (creationDate == null) {
-            if (other.creationDate != null) {
-                return false;
-            }
-        } else if (!creationDate.equals(other.creationDate)) {
-            return false;
-        }
-        if (id != other.id) {
-            return false;
-        }
-        if (lastUpdateDate == null) {
-            if (other.lastUpdateDate != null) {
-                return false;
-            }
-        } else if (!lastUpdateDate.equals(other.lastUpdateDate)) {
-            return false;
-        }
-        if (topic == null) {
-            if (other.topic != null) {
-                return false;
-            }
-        } else if (!topic.equals(other.topic)) {
-            return false;
-        }
-        if (user == null) {
-            if (other.user != null) {
-                return false;
-            }
-        } else if (!user.equals(other.user)) {
-            return false;
-        }
-        return true;
     }
 }

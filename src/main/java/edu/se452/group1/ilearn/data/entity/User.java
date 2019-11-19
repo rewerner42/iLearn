@@ -1,11 +1,10 @@
 package edu.se452.group1.ilearn.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -15,14 +14,62 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="USER_ID")
     private long id;
+
+    @NotEmpty
+    @Column(name="FIRST_NAME")
+    private String firstName;
+
+    @NotEmpty
+    @Column(name="LAST_NAME")
+    private String lastName;
+
+    @NotEmpty
     @Column(name="EMAIL")
     private String email;
+
+    @NotEmpty
     @Column(name="USERNAME")
     private String username;
-    @Column(name="PASSWORD_HASH")
-    private String passwordHash;
-    @Column(name="USER_TYPE") //S will be for Student, T for Teacher, P for Parent
-    private char userType;
+
+    @NotEmpty
+    @Size(min = 8)
+    @Column(name="PASSWORD")
+    private String password;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Parent parent;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Teacher teacher;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Student student;
+
+    @NotEmpty
+    @Column(name="STATE", nullable=false)
+    private String state=State.ACTIVE.getState();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "USER_USER_PROFILE",
+            joinColumns = { @JoinColumn(name = "USER_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
+    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+
+    public User() {
+    }
+
+    public User(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String email, @NotEmpty String username, @NotEmpty @Size(min = 8) String password, Parent parent, Teacher teacher, Student student, @NotEmpty String state, Set<UserProfile> userProfiles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.parent = parent;
+        this.teacher = teacher;
+        this.student = student;
+        this.state = state;
+        this.userProfiles = userProfiles;
+    }
 
     public long getId() {
         return id;
@@ -30,6 +77,22 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -48,19 +111,51 @@ public class User {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public char getUserType() {
-        return userType;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setUserType(char userType) {
-        this.userType = userType;
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Set<UserProfile> getUserProfiles() {
+        return userProfiles;
+    }
+
+    public void setUserProfiles(Set<UserProfile> userProfiles) {
+        this.userProfiles = userProfiles;
     }
 }

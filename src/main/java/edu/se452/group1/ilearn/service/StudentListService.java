@@ -26,7 +26,6 @@ public class StudentListService{
         Map<Long, StudentListing> studentListingMap = new HashMap<>();
         students.forEach(student ->{
             StudentListing studListing = new StudentListing();
-            studListing.setClassNum(student.getClassNum());
             studListing.setFirstName(student.getFirstName());
             studListing.setLastName(student.getLastName());
             studListing.setStudentID(student.getId());

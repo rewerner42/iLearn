@@ -27,5 +27,4 @@ public enum State {
         return this.name();
     }
 
-
 }

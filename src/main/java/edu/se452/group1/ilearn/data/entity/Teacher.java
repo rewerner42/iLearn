@@ -1,11 +1,8 @@
 package edu.se452.group1.ilearn.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -15,12 +12,28 @@ public class Teacher {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="TEACHER_ID")
     private long id;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "teacher")
+    private User user;
+
     @Column(name="FIRST_NAME")
-    private String firstName1;
+    private String firstName;
+
     @Column(name="LAST_NAME")
-    private String lastName1;
-    @Column(name="CLASS_NUM")
-    private int classNum;
+    private String lastName;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "courseTeacher")
+    private Set<Course> courses = new HashSet<>();
+
+    public Teacher() {
+    }
+
+    public Teacher(User user, String firstName, String lastName, Set<Course> courses) {
+        this.user = user;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courses = courses;
+    }
 
     public long getId() {
         return id;
@@ -30,27 +43,35 @@ public class Teacher {
         this.id = id;
     }
 
-    public String getFirstName1() {
-        return firstName1;
+    public User getUser() {
+        return user;
     }
 
-    public void setFirstName1(String firstName1) {
-        this.firstName1 = firstName1;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getLastName1() {
-        return lastName1;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLastName1(String lastName1) {
-        this.lastName1 = lastName1;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public int getClassNum() {
-        return classNum;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setClassNum(int classNum) {
-        this.classNum = classNum;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }

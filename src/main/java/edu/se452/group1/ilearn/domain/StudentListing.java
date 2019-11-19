@@ -4,7 +4,6 @@ public class StudentListing{
     private long studentID;
     private String firstName;
     private String lastName;
-    private int classNum;
 
     public long getStudentID() {
         return this.studentID;
@@ -29,14 +28,4 @@ public class StudentListing{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public int getClassNum() {
-        return this.classNum;
-    }
-
-    public void setClassNum(int classNum) {
-        this.classNum = classNum;
-    }
-
-    
 }

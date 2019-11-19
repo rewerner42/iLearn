@@ -4,7 +4,7 @@ public class UserRegistration{
     private long userID;
     private String userEMail;
     private String userName;
-    private String passwordHash;
+    private String password;
     private char userType;
 
     public long getUserID() {
@@ -32,11 +32,11 @@ public class UserRegistration{
     }
 
     public String getPasswordHash() {
-        return passwordHash;
+        return password;
     }
 
     public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+        this.password = passwordHash;
     }
 
     public char getUserType() {

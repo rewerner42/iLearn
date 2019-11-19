@@ -1,11 +1,6 @@
 package edu.se452.group1.ilearn.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -15,16 +10,33 @@ public class Grade {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="GRADE_ID")
     private long id;
-    @Column(name="ASSIGNMENT_ID")
-    private long assignmentName;
-    @Column(name="STUDENT_ID")
-    private long studentId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="ASSIGNMENT_ID")
+    private Assignment gradeAssignment;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Student student;
+
     @Column(name="POINTS_GIVEN")
     private long pointsGiven;
+
     @Column(name="LETTER_GRADE")
     private String letterGrade;
+
     @Column(name="FEEDBACK")
     private String feedback;
+
+    public Grade() {
+    }
+
+    public Grade(Assignment gradeAssignment, Student student, long pointsGiven, String letterGrade, String feedback) {
+        this.gradeAssignment = gradeAssignment;
+        this.student = student;
+        this.pointsGiven = pointsGiven;
+        this.letterGrade = letterGrade;
+        this.feedback = feedback;
+    }
 
     public long getId() {
         return id;
@@ -34,20 +46,20 @@ public class Grade {
         this.id = id;
     }
 
-    public long getAssignmentName() {
-        return assignmentName;
+    public Assignment getGradeAssignment() {
+        return gradeAssignment;
     }
 
-    public void setAssignmentName(long assignmentName) {
-        this.assignmentName = assignmentName;
+    public void setGradeAssignment(Assignment gradeAssignment) {
+        this.gradeAssignment = gradeAssignment;
     }
 
-    public long getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(long studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public long getPointsGiven() {
